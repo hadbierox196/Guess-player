@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Player Guessing Game</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .game-board {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .guess-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+
+        .guess-cell {
+            background-color: #000000;
+            border: 2px solid #333;
+            padding: 10px;
+            text-align: center;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .match {
+            background-color: #ffd700;
+            color: #000000;
+        }
+
+        .input-section {
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: #333;
+            border-radius: 5px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+
+        .suggestions.active {
+            display: block;
+        }
+
+        .suggestion-item {
+            padding: 10px;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .suggestion-item:hover {
+            background-color: #444;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #ffd700;
+            color: #000000;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:disabled {
+            background-color: #666;
+            cursor: not-allowed;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 20px;
+            color: #ffd700;
+            font-size: 18px;
+        }
+
+        .arrow {
+            font-size: 20px;
+        }
+
+        @media (max-width: 480px) {
+            .guess-cell {
+                padding: 8px;
+                font-size: 12px;
+                min-height: 50px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>FOOTBALL PLAYER GUESS</h1>
+        <div class="game-board" id="gameBoard"></div>
+        <div class="input-section">
+            <div class="search-container">
+                <input type="text" id="playerSearch" placeholder="Type player name..." autocomplete="off">
+                <div class="suggestions" id="suggestions"></div>
+            </div>
+            <button id="submitGuess" disabled>GUESS</button>
+        </div>
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        // Sample players - replace with your actual player database
+        const players = [
+            {
+                name: "Lionel Messi",
+                nation: "Argentina",
+                yearBorn: 1987,
+                position: "Forward",
+                clubs: "Barcelona",
+                goals: 800
+            },
+            {
+                name: "Cristiano Ronaldo",
+                nation: "Portugal",
+                yearBorn: 1985,
+                position: "Forward",
+                clubs: "Man United",
+                goals: 850
+            }
+        ];
+
+        // Game state
+        let targetPlayer = players[Math.floor(Math.random() * players.length)];
+        let guesses = [];
+        let maxGuesses = 5;
+        let gameOver = false;
+        let selectedPlayer = null;
+
+        // DOM elements
+        const gameBoard = document.getElementById('gameBoard');
+        const playerSearch = document.getElementById('playerSearch');
+        const suggestions = document.getElementById('suggestions');
+        const submitGuess = document.getElementById('submitGuess');
+        const messageEl = document.getElementById('message');
+
+        // Initialize game board
+        for (let i = 0; i < maxGuesses; i++) {
+            const row = document.createElement('div');
+            row.className = 'guess-row';
+            row.id = `row-${i}`;
+            
+            for (let j = 0; j < 5; j++) {
+                const cell = document.createElement('div');
+                cell.className = 'guess-cell';
+                row.appendChild(cell);
+            }
+            
+            gameBoard.appendChild(row);
+        }
+
+        // Search functionality
+        playerSearch.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filteredPlayers = players.filter(player => 
+                player.name.toLowerCase().includes(searchTerm)
+            );
+
+            suggestions.innerHTML = '';
+            
+            if (searchTerm.length > 0) {
+                suggestions.classList.add('active');
+                filteredPlayers.forEach(player => {
+                    const div = document.createElement('div');
+                    div.className = 'suggestion-item';
+                    div.textContent = player.name;
+                    div.addEventListener('click', () => {
+                        playerSearch.value = player.name;
+                        selectedPlayer = player;
+                        suggestions.classList.remove('active');
+                        submitGuess.disabled = false;
+                    });
+                    suggestions.appendChild(div);
+                });
+            } else {
+                suggestions.classList.remove('active');
+                submitGuess.disabled = true;
+                selectedPlayer = null;
+            }
+        });
+
+        // Close suggestions when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container')) {
+                suggestions.classList.remove('active');
+            }
+        });
+
+        // Handle guess submission
+        submitGuess.addEventListener('click', () => {
+            if (gameOver || !selectedPlayer) return;
+
+            const currentRow = document.getElementById(`row-${guesses.length}`);
+            const cells = currentRow.children;
+
+            // Compare and display results
+            const comparison = [
+                { value: selectedPlayer.nation, target: targetPlayer.nation },
+                { value: selectedPlayer.yearBorn, target: targetPlayer.yearBorn },
+                { value: selectedPlayer.position, target: targetPlayer.position },
+                { value: selectedPlayer.clubs, target: targetPlayer.clubs },
+                { value: selectedPlayer.goals, target: targetPlayer.goals, isGoals: true }
+            ];
+
+            comparison.forEach((comp, index) => {
+                const cell = cells[index];
+                const isMatch = comp.value === comp.target;
+                
+                if (comp.isGoals) {
+                    cell.innerHTML = `${comp.value}<br>${comp.value < comp.target ? '↑' : comp.value > comp.target ? '↓' : ''}`;
+                } else {
+                    cell.textContent = comp.value;
+                }
+                
+                if (isMatch) {
+                    cell.classList.add('match');
+                }
+            });
+
+            guesses.push(selectedPlayer);
+
+            // Check win condition
+            if (selectedPlayer.name === targetPlayer.name) {
+                gameOver = true;
+                messageEl.textContent = "Congratulations! You won!";
+                submitGuess.disabled = true;
+            } else if (guesses.length >= maxGuesses) {
+                gameOver = true;
+                messageEl.textContent = `Game Over! The player was ${targetPlayer.name}`;
+                submitGuess.disabled = true;
+            }
+
+            // Reset selection
+            playerSearch.value = "";
+            selectedPlayer = null;
+            submitGuess.disabled = true;
+        });
+    </script>
+</body>
+</html>
