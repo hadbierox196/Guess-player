@@ -169,22 +169,783 @@
     <script>
         // Sample players - replace with your actual player database
         const players = [
-            {
-                name: "Lionel Messi",
-                nation: "Argentina",
-                yearBorn: 1987,
-                position: "Forward",
-                clubs: "Barcelona",
-                goals: 800
-            },
-            {
-                name: "Cristiano Ronaldo",
-                nation: "Portugal",
-                yearBorn: 1985,
-                position: "Forward",
-                clubs: "Man United",
-                goals: 850
-            }
+    {
+        name: "Lionel Messi",
+        nation: "Argentina",
+        yearBorn: 1987,
+        position: "Forward",
+        clubs: "Barcelona, Paris Saint-Germain, Inter Miami",
+        goals: 835
+    },
+    {
+        name: "Cristiano Ronaldo",
+        nation: "Portugal",
+        yearBorn: 1985,
+        position: "Forward",
+        clubs: "Sporting CP, Manchester United, Real Madrid, Juventus, Al Nassr",
+        goals: 895
+    },
+    {
+        name: "Robert Lewandowski",
+        nation: "Poland",
+        yearBorn: 1988,
+        position: "Forward",
+        clubs: "Znicz Pruszków, Lech Poznań, Borussia Dortmund, Bayern Munich, Barcelona",
+        goals: 652
+    },
+    {
+        name: "Kylian Mbappé",
+        nation: "France",
+        yearBorn: 1998,
+        position: "Forward",
+        clubs: "Monaco, Paris Saint-Germain, Real Madrid",
+        goals: 335
+    },
+    {
+        name: "Erling Haaland",
+        nation: "Norway",
+        yearBorn: 2000,
+        position: "Forward",
+        clubs: "Bryne, Molde, Red Bull Salzburg, Borussia Dortmund, Manchester City",
+        goals: 241
+    },
+    {
+        name: "Karim Benzema",
+        nation: "France",
+        yearBorn: 1987,
+        position: "Forward",
+        clubs: "Lyon, Real Madrid, Al-Ittihad",
+        goals: 440
+    },
+    {
+        name: "Mohamed Salah",
+        nation: "Egypt",
+        yearBorn: 1992,
+        position: "Forward",
+        clubs: "Al Mokawloon, Basel, Chelsea, Fiorentina, Roma, Liverpool",
+        goals: 359
+    },
+    {
+        name: "Harry Kane",
+        nation: "England",
+        yearBorn: 1993,
+        position: "Forward",
+        clubs: "Tottenham Hotspur, Leyton Orient, Millwall, Norwich City, Leicester City, Bayern Munich",
+        goals: 376
+    },
+    {
+        name: "Neymar Jr.",
+        nation: "Brazil",
+        yearBorn: 1992,
+        position: "Forward",
+        clubs: "Santos, Barcelona, Paris Saint-Germain, Al Hilal",
+        goals: 412
+    },
+    {
+        name: "Kevin De Bruyne",
+        nation: "Belgium",
+        yearBorn: 1991,
+        position: "Midfielder",
+        clubs: "Genk, Chelsea, Werder Bremen, Wolfsburg, Manchester City",
+        goals: 128
+    },
+    {
+        name: "Luka Modrić",
+        nation: "Croatia",
+        yearBorn: 1985,
+        position: "Midfielder",
+        clubs: "Dinamo Zagreb, Zrinjski Mostar, Inter Zaprešić, Tottenham Hotspur, Real Madrid",
+        goals: 89
+    },
+    {
+        name: "N'Golo Kanté",
+        nation: "France",
+        yearBorn: 1991,
+        position: "Midfielder",
+        clubs: "Boulogne, Caen, Leicester City, Chelsea, Al-Ittihad",
+        goals: 27
+    },
+    {
+        name: "Virgil van Dijk",
+        nation: "Netherlands",
+        yearBorn: 1991,
+        position: "Defender",
+        clubs: "Groningen, Celtic, Southampton, Liverpool",
+        goals: 52
+    },
+    {
+        name: "Sergio Ramos",
+        nation: "Spain",
+        yearBorn: 1986,
+        position: "Defender",
+        clubs: "Sevilla, Real Madrid, Paris Saint-Germain, Sevilla",
+        goals: 133
+    },
+    {
+        name: "Manuel Neuer",
+        nation: "Germany",
+        yearBorn: 1986,
+        position: "Goalkeeper",
+        clubs: "Schalke 04, Bayern Munich",
+        goals: 0
+    },
+    {
+        name: "Jan Oblak",
+        nation: "Slovenia",
+        yearBorn: 1993,
+        position: "Goalkeeper",
+        clubs: "Olimpija Ljubljana, Benfica, Atlético Madrid",
+        goals: 0
+    },
+    {
+        name: "Thibaut Courtois",
+        nation: "Belgium",
+        yearBorn: 1992,
+        position: "Goalkeeper",
+        clubs: "Genk, Atlético Madrid, Chelsea, Real Madrid",
+        goals: 0
+    },
+    {
+        name: "Alisson Becker",
+        nation: "Brazil",
+        yearBorn: 1992,
+        position: "Goalkeeper",
+        clubs: "Internacional, Roma, Liverpool",
+        goals: 1
+    },
+    {
+        name: "Joshua Kimmich",
+        nation: "Germany",
+        yearBorn: 1995,
+        position: "Midfielder",
+        clubs: "RB Leipzig, Bayern Munich",
+        goals: 48
+    },
+    {
+        name: "Toni Kroos",
+        nation: "Germany",
+        yearBorn: 1990,
+        position: "Midfielder",
+        clubs: "Bayern Munich, Bayer Leverkusen, Real Madrid",
+        goals: 73
+    },
+    {
+        name: "Rodri",
+        nation: "Spain",
+        yearBorn: 1996,
+        position: "Midfielder",
+        clubs: "Villarreal, Atlético Madrid, Manchester City",
+        goals: 39
+    },
+    {
+        name: "Bruno Fernandes",
+        nation: "Portugal",
+        yearBorn: 1994,
+        position: "Midfielder",
+        clubs: "Novara, Udinese, Sampdoria, Sporting CP, Manchester United",
+        goals: 141
+    },
+    {
+        name: "Jude Bellingham",
+        nation: "England",
+        yearBorn: 2003,
+        position: "Midfielder",
+        clubs: "Birmingham City, Borussia Dortmund, Real Madrid",
+        goals: 66
+    },
+    {
+        name: "Vinícius Júnior",
+        nation: "Brazil",
+        yearBorn: 2000,
+        position: "Forward",
+        clubs: "Flamengo, Real Madrid",
+        goals: 89
+    },
+    {
+        name: "Pedri",
+        nation: "Spain",
+        yearBorn: 2002,
+        position: "Midfielder",
+        clubs: "Las Palmas, Barcelona",
+        goals: 26
+    },
+    {
+        name: "Phil Foden",
+        nation: "England",
+        yearBorn: 2000,
+        position: "Midfielder",
+        clubs: "Manchester City",
+        goals: 106
+    },
+    {
+        name: "Gianluigi Donnarumma",
+        nation: "Italy",
+        yearBorn: 1999,
+        position: "Goalkeeper",
+        clubs: "AC Milan, Paris Saint-Germain",
+        goals: 0
+    },
+    {
+        name: "Lautaro Martínez",
+        nation: "Argentina",
+        yearBorn: 1997,
+        position: "Forward",
+        clubs: "Racing Club, Inter Milan",
+        goals: 171
+    },
+    {
+        name: "Son Heung-min",
+        nation: "South Korea",
+        yearBorn: 1992,
+        position: "Forward",
+        clubs: "Hamburger SV, Bayer Leverkusen, Tottenham Hotspur",
+        goals: 247
+    },
+    {
+        name: "Riyad Mahrez",
+        nation: "Algeria",
+        yearBorn: 1991,
+        position: "Forward",
+        clubs: "Le Havre, Leicester City, Manchester City, Al-Ahli",
+        goals: 156
+    },
+    {
+        name: "Antoine Griezmann",
+        nation: "France",
+        yearBorn: 1991,
+        position: "Forward",
+        clubs: "Real Sociedad, Atlético Madrid, Barcelona",
+        goals: 320
+    },
+    {
+        name: "Sadio Mané",
+        nation: "Senegal",
+        yearBorn: 1992,
+        position: "Forward",
+        clubs: "Metz, Red Bull Salzburg, Southampton, Liverpool, Bayern Munich, Al-Nassr",
+        goals: 252
+    },
+    {
+        name: "Thiago Alcântara",
+        nation: "Spain",
+        yearBorn: 1991,
+        position: "Midfielder",
+        clubs: "Barcelona, Bayern Munich, Liverpool",
+        goals: 39
+    },
+    {
+        name: "Bernardo Silva",
+        nation: "Portugal",
+        yearBorn: 1994,
+        position: "Midfielder",
+        clubs: "Benfica, Monaco, Manchester City",
+        goals: 106
+    },
+    {
+        name: "Raheem Sterling",
+        nation: "England",
+        yearBorn: 1994,
+        position: "Forward",
+        clubs: "Liverpool, Manchester City, Chelsea",
+        goals: 165
+    },
+    {
+        name: "Thomas Müller",
+        nation: "Germany",
+        yearBorn: 1989,
+        position: "Forward",
+        clubs: "Bayern Munich",
+        goals: 246
+    },
+    {
+        name: "Frenkie de Jong",
+        nation: "Netherlands",
+        yearBorn: 1997,
+        position: "Midfielder",
+        clubs: "Willem II, Ajax, Barcelona",
+        goals: 29
+    },
+    {
+        name: "Casemiro",
+        nation: "Brazil",
+        yearBorn: 1992,
+        position: "Midfielder",
+        clubs: "São Paulo, Real Madrid, Manchester United",
+        goals: 64
+    },
+    {
+        name: "Andrew Robertson",
+        nation: "Scotland",
+        yearBorn: 1994,
+        position: "Defender",
+        clubs: "Queen's Park, Dundee United, Hull City, Liverpool",
+        goals: 16
+    },
+    {
+        name: "Trent Alexander-Arnold",
+        nation: "England",
+        yearBorn: 1998,
+        position: "Defender",
+        clubs: "Liverpool",
+        goals: 19
+    },
+    {
+        name: "João Cancelo",
+        nation: "Portugal",
+        yearBorn: 1994,
+        position: "Defender",
+        clubs: "Benfica, Valencia, Inter Milan, Juventus, Manchester City, Bayern Munich, Barcelona, Al-Hilal",
+        goals: 25
+    },
+    {
+        name: "Ruben Dias",
+        nation: "Portugal",
+        yearBorn: 1997,
+        position: "Defender",
+        clubs: "Benfica, Manchester City",
+        goals: 10
+    },
+    {
+        name: "Alphonso Davies",
+        nation: "Canada",
+        yearBorn: 2000,
+        position: "Defender",
+        clubs: "Vancouver Whitecaps, Bayern Munich",
+        goals: 24
+    },
+    {
+        name: "Matthijs de Ligt",
+        nation: "Netherlands",
+        yearBorn: 1999,
+        position: "Defender",
+        clubs: "Ajax, Juventus, Bayern Munich",
+        goals: 26
+    },
+    {
+        name: "Achraf Hakimi",
+        nation: "Morocco",
+        yearBorn: 1998,
+        position: "Defender",
+        clubs: "Real Madrid, Borussia Dortmund, Inter Milan, Paris Saint-Germain",
+        goals: 41
+    },
+    {
+        name: "Zlatan Ibrahimović",
+        nation: "Sweden",
+        yearBorn: 1981,
+        position: "Forward",
+        clubs: "Malmö FF, Ajax, Juventus, Inter Milan, Barcelona, AC Milan, Paris Saint-Germain, Manchester United, LA Galaxy",
+        goals: 573
+    },
+    {
+        name: "Luis Suárez",
+        nation: "Uruguay",
+        yearBorn: 1987,
+        position: "Forward",
+        clubs: "Nacional, Groningen, Ajax, Liverpool, Barcelona, Atlético Madrid, Nacional, Inter Miami",
+        goals: 546
+    },
+    {
+        name: "Edinson Cavani",
+        nation: "Uruguay",
+        yearBorn: 1987,
+        position: "Forward",
+        clubs: "Danubio, Palermo, Napoli, Paris Saint-Germain, Manchester United, Valencia, Boca Juniors",
+        goals: 416
+    },
+    {
+        name: "Romelu Lukaku",
+        nation: "Belgium",
+        yearBorn: 1993,
+        position: "Forward",
+        clubs: "Anderlecht, Chelsea, West Bromwich Albion, Everton, Manchester United, Inter Milan, Roma",
+        goals: 365
+    },
+    {
+        name: "Paulo Dybala",
+        nation: "Argentina",
+        yearBorn: 1993,
+        position: "Forward",
+        clubs: "Instituto, Palermo, Juventus, Roma",
+        goals: 175
+    },
+    {
+        name: "James Rodríguez",
+        nation: "Colombia",
+        yearBorn: 1991,
+        position: "Midfielder",
+        clubs: "Envigado, Banfield, Porto, Monaco, Real Madrid, Bayern Munich, Everton, Al-Rayyan, Olympiacos, São Paulo, Rayo Vallecano",
+        goals: 135
+    },
+    {
+        name: "Marco Reus",
+        nation: "Germany",
+        yearBorn: 1989,
+        position: "Forward",
+        clubs: "Rot Weiss Ahlen, Borussia Mönchengladbach, Borussia Dortmund, LA Galaxy",
+        goals: 183
+    },
+    {
+        name: "David Silva",
+        nation: "Spain",
+        yearBorn: 1986,
+        position: "Midfielder",
+        clubs: "Valencia, Eibar, Celta Vigo, Manchester City, Real Sociedad",
+        goals: 128
+    },
+    {
+        name: "Andrés Iniesta",
+        nation: "Spain",
+        yearBorn: 1984,
+        position: "Midfielder",
+        clubs: "Barcelona, Vissel Kobe, Emirates Club",
+        goals: 83
+    },
+    {
+        name: "Xavi Hernández",
+        nation: "Spain",
+        yearBorn: 1980,
+        position: "Midfielder",
+        clubs: "Barcelona, Al Sadd",
+        goals: 103
+    },
+    {
+        name: "Eden Hazard",
+        nation: "Belgium",
+        yearBorn: 1991,
+        position: "Forward",
+        clubs: "Lille, Chelsea, Real Madrid",
+        goals: 200
+    },
+    {
+        name: "Gareth Bale",
+        nation: "Wales",
+        yearBorn: 1989,
+        position: "Forward",
+        clubs: "Southampton, Tottenham Hotspur, Real Madrid, Los Angeles FC",
+        goals: 226
+    },
+    {
+        name: "Wayne Rooney",
+        nation: "England",
+        yearBorn: 1985,
+        position: "Forward",
+        clubs: "Everton, Manchester United, D.C. United, Derby County",
+        goals: 313
+    },
+    {
+        name: "Frank Lampard",
+        nation: "England",
+        yearBorn: 1978,
+        position: "Midfielder",
+        clubs: "West Ham United, Swansea City, Chelsea, Manchester City, New York City",
+        goals: 274
+    },
+    {
+        name: "Steven Gerrard",
+        nation: "England",
+        yearBorn: 1980,
+        position: "Midfielder",
+        clubs: "Liverpool, LA Galaxy",
+        goals: 191
+    },
+    {
+        name: "Didier Drogba",
+        nation: "Ivory Coast",
+        yearBorn: 1978,
+        position: "Forward",
+        clubs: "Le Mans, Guingamp, Marseille, Chelsea, Shanghai Shenhua, Galatasaray, Montreal Impact, Phoenix Rising",
+        goals: 369
+    },
+    {
+        name: "Iker Casillas",
+        nation: "Spain",
+        yearBorn: 1981,
+        position: "Goalkeeper",
+        clubs: "Real Madrid, Porto",
+        goals: 0
+    },
+    {
+        name: "Gianluigi Buffon",
+        nation: "Italy",
+        yearBorn: 1978,
+        position: "Goalkeeper",
+        clubs: "Parma, Juventus, Paris Saint-Germain",
+        goals: 0
+    },
+    {
+        name: "David Beckham",
+        nation: "England",
+        yearBorn: 1975,
+        position: "Midfielder",
+        clubs: "Manchester United, Preston North End, Real Madrid, LA Galaxy, AC Milan, Paris Saint-Germain",
+        goals: 127
+    },
+    {
+        name: "Thierry Henry",
+        nation: "France",
+        yearBorn: 1977,
+        position: "Forward",
+        clubs: "Monaco, Juventus, Arsenal, Barcelona, New York Red Bulls",
+        goals: 360
+    },
+    {
+        name: "Pelé",
+        nation: "Brazil",
+        yearBorn: 1940,
+        position: "Forward",
+        clubs: "Santos, New York Cosmos",
+        goals: 767
+    },
+    {
+        name: "Diego Maradona",
+        nation: "Argentina",
+        yearBorn: 1960,
+        position: "Forward",
+        clubs: "Argentinos Juniors, Boca Juniors, Barcelona, Napoli, Sevilla, Newell's Old Boys",
+        goals: 346
+    },
+    {
+        name: "Ronaldo Nazário",
+        nation: "Brazil",
+        yearBorn: 1976,
+        position: "Forward",
+        clubs: "Cruzeiro, PSV Eindhoven, Barcelona, Inter Milan, Real Madrid, AC Milan, Corinthians",
+        goals: 414
+    },
+    {
+        name: "Ronaldinho",
+        nation: "Brazil",
+        yearBorn: 1980,
+        position: "Forward",
+        clubs: "Grêmio, Paris Saint-Germain, Barcelona, AC Milan, Flamengo, Atlético Mineiro, Querétaro, Fluminense",
+        goals: 266
+    },
+    {
+        name: "Zinedine Zidane",
+        nation: "France",
+        yearBorn: 1972,
+        position: "Midfielder",
+        clubs: "Cannes, Bordeaux, Juventus, Real Madrid",
+        goals: 125
+    },
+    {
+        name: "Johan Cruyff",
+        nation: "Netherlands",
+        yearBorn: 1947,
+        position: "Forward",
+        clubs: "Ajax, Barcelona, Feyenoord, Los Angeles Aztecs, Washington Diplomats, Levante",
+        goals: 433
+    },
+    {
+        name: "Ferenc Puskás",
+        nation: "Hungary",
+        yearBorn: 1927,
+        position: "Forward",
+        clubs: "Budapest Honvéd, Real Madrid",
+        goals: 746
+    },
+    {
+        name: "Roberto Baggio",
+        nation: "Italy",
+        yearBorn: 1967,
+        position: "Forward",
+        clubs: "Vicenza, Fiorentina, Juventus, AC Milan, Bologna, Inter Milan, Brescia",
+        goals: 318
+    },
+    {
+        name: "Rodri Hernández",
+        nation: "Spain",
+        yearBorn: 1996,
+        position: "Midfielder",
+        clubs: "Villarreal, Atlético Madrid, Manchester City",
+        goals: 39
+    },
+    {
+        name: "Bukayo Saka",
+        nation: "England",
+        yearBorn: 2001,
+        position: "Forward",
+        clubs: "Arsenal",
+        goals: 53
+    },
+    {
+        name: "Jamal Musiala",
+        nation: "Germany",
+        yearBorn: 2003,
+        position: "Midfielder",
+        clubs: "Bayern Munich",
+        goals: 54
+    },
+    {
+        name: "Florian Wirtz",
+        nation: "Germany",
+        yearBorn: 2003,
+        position: "Midfielder",
+        clubs: "Bayer Leverkusen",
+        goals: 43
+    },
+    {
+        name: "David Alaba",
+        nation: "Austria",
+        yearBorn: 1992,
+        position: "Defender",
+        clubs: "Austria Wien, Bayern Munich, Real Madrid",
+        goals: 36
+    },
+    {
+        name: "Cole Palmer",
+        nation: "England",
+        yearBorn: 2002,
+        position: "Midfielder",
+        clubs: "Manchester City, Chelsea",
+        goals: 35
+    },
+    {
+        name: "Marcus Rashford",
+        nation: "England",
+        yearBorn: 1997,
+        position: "Forward",
+        clubs: "Manchester United",
+        goals: 150
+    },
+    {
+        name: "Gavi",
+        nation: "Spain",
+        yearBorn: 2004,
+        position: "Midfielder",
+        clubs: "Barcelona",
+        goals: 9
+    },
+    {
+        name: "Xabi Alonso",
+        nation: "Spain",
+        yearBorn: 1981,
+        position: "Midfielder",
+        clubs: "Real Sociedad, Liverpool, Real Madrid, Bayern Munich",
+        goals: 47
+    },
+    {
+        name: "Federico Valverde",
+        nation: "Uruguay",
+        yearBorn: 1998,
+        position: "Midfielder",
+        clubs: "Peñarol, Deportivo La Coruña, Real Madrid",
+        goals: 32
+    },
+    {
+        name: "Rodrygo",
+        nation: "Brazil",
+        yearBorn: 2001,
+        position: "Forward",
+        clubs: "Santos, Real Madrid",
+        goals: 52
+    },
+    {
+        name: "Bukayo Saka",
+        nation: "England",
+        yearBorn: 2001,
+        position: "Forward",
+        clubs: "Arsenal",
+        goals: 53
+    },
+    {
+        name: "Emiliano Martínez",
+        nation: "Argentina",
+        yearBorn: 1992,
+        position: "Goalkeeper",
+        clubs: "Arsenal, Oxford United, Sheffield Wednesday, Rotherham United, Wolverhampton Wanderers, Getafe, Reading, Aston Villa",
+        goals: 0
+    },
+    {
+        name: "Ederson",
+        nation: "Brazil",
+        yearBorn: 1993,
+        position: "Goalkeeper",
+        clubs: "Ribeirão, Rio Ave, Benfica, Manchester City",
+        goals: 0
+    },
+    {
+        name: "Rafael Leão",
+        nation: "Portugal",
+        yearBorn: 1999,
+        position: "Forward",
+        clubs: "Sporting CP, Lille, AC Milan",
+        goals: 81
+    },
+    {
+        name: "Kingsley Coman",
+        nation: "France",
+        yearBorn: 1996,
+        position: "Forward",
+        clubs: "Paris Saint-Germain, Juventus, Bayern Munich",
+        goals: 67
+    },
+    {
+        name: "Christian Pulisic",
+        nation: "United States",
+        yearBorn: 1998,
+        position: "Forward",
+        clubs: "Borussia Dortmund, Chelsea, AC Milan",
+        goals: 89
+    },
+    {
+        name: "Dusan Vlahović",
+        nation: "Serbia",
+        yearBorn: 2000,
+        position: "Forward",
+        clubs: "Partizan Belgrade, Fiorentina, Juventus",
+        goals: 102
+    },
+    {
+        name: "William Saliba",
+        nation: "France",
+        yearBorn: 2001,
+        position: "Defender",
+        clubs: "Saint-Étienne, Arsenal, Nice, Marseille",
+        goals: 4
+    },
+    {
+        name: "Jonathan David",
+        nation: "Canada",
+        yearBorn: 2000,
+        position: "Forward",
+        clubs: "Gent, Lille",
+        goals: 138
+    },
+    {
+        name: "Eduardo Camavinga",
+        nation: "France",
+        yearBorn: 2002,
+        position: "Midfielder",
+        clubs: "Rennes, Real Madrid",
+        goals: 7
+    },
+    {
+        name: "Aurélien Tchouaméni",
+        nation: "France",
+        yearBorn: 2000,
+        position: "Midfielder",
+        clubs: "Bordeaux, Monaco, Real Madrid",
+        goals: 20
+    },
+    {
+        name: "Alejandro Garnacho",
+        nation: "Argentina",
+        yearBorn: 2004,
+        position: "Forward",
+        clubs: "Manchester United",
+        goals: 24
+    },
+    {
+        name: "Harvey Elliott",
+        nation: "England",
+        yearBorn: 2003,
+        position: "Midfielder",
+        clubs: "Fulham, Blackburn Rovers, Liverpool",
+        goals: 25
+    }
+        
         ];
 
         // Game state
